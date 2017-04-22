@@ -18,26 +18,44 @@
   <script src="angular/angular.min.js"></script>
   <script src="app/myapp.js"></script>
   <script src="controllers/mainPageController.js"></script>
-  <script src="factory/users.js"></script>
-  <script src="factory/posts.js"></script>
+  <!--<script src="factory/users.js"></script>-->
+  <script src="factory/tweets.js"></script>
+  <script src="http://d3js.org/d3.v3.js"></script>
+  <link rel="stylesheet" href="css/style.css"/>
+  
 
 </head>
 
 <body ng-app="myApp">
   <div ng-controller="mainPageController">
-
+    <div class="container">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="username">Usuario:</label>
+          <input ng-model="username">
+        </div>
+        <button class="btn btn-default" ng-click="update(username)">Aceptar</button>
+      </form>
+    </div>
+    <div class="container" id="chartContainer">
+      <div id="chart"></div>
+      <script src="js/heatmap.js"></script>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h3> Lista de usuarios: </h3>
-          <h5 ng-repeat="u in userList">
-            <strong>username:</strong> [[u.username]],
-            <strong>name</strong> :[[u.name]]
+          <h3> Lista de Tweets: </h3>
+          <h5 ng-repeat="u in tweetsList">
+            <strong>Username:</strong> {{ u.screen_name }},
+            <strong>Tweet</strong> :{{ u.tweet_text }}
           </h5>
         </div>
       </div>
     </div>
+        
   </div>
+  
+  
 
 </body>
 
